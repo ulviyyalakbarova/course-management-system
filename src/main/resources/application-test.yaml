@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRE_URL:localhost}:5432/course-management-system
+    password: ${POSTGRE_PASSWORD:12345678}
+    username: ${POSTGRE_USERNAME:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+
+  liquibase:
+    enabled: true
+    database-change-log-lock-table: DATABASECHANGELOGLOCK
+    database-change-log-table: DATABASECHANGELOG
+    change-log: 'classpath:db/changelog/db.changelog-master.yaml'

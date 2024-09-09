@@ -1,0 +1,59 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version "$springBootVersion"
+	id 'io.spring.dependency-management' version "$dependencyManagement"
+	id 'groovy'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+	implementation "org.springframework.boot:spring-boot-starter-data-jpa:${jpaVersion}"
+
+	implementation "org.postgresql:postgresql:${postgreSqlVersion}"
+
+	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${openApiVersion}"
+
+	implementation "org.mapstruct:mapstruct:${mapStructVersion}.Final"
+	annotationProcessor "org.mapstruct:mapstruct-processor:${mapStructVersion}.Final"
+
+	implementation "org.liquibase:liquibase-core:${liquibaseVersion}"
+
+	implementation "org.springframework.boot:spring-boot-starter-validation:${validationVersion}"
+
+	implementation "org.springframework.boot:spring-boot-configuration-processor:${springBootConfigVersion}"
+
+	implementation "org.springframework.boot:spring-boot-starter-security:${securityVersion}"
+
+	implementation "io.jsonwebtoken:jjwt-api:${jwtVersion}"
+	runtimeOnly "io.jsonwebtoken:jjwt-impl:${jwtVersion}"
+	runtimeOnly "io.jsonwebtoken:jjwt-jackson:${jwtVersion}"
+
+	implementation "org.springframework.cloud:spring-cloud-starter-openfeign:${feignClientVersion}"
+
+	testImplementation 'org.spockframework:spock-core:2.2-groovy-3.0'
+	testImplementation 'org.codehaus.groovy:groovy-all:3.0.9'
+
+	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${openApiVersion}"
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

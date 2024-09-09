@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 28072024-02
+      author: ulviyya.alakbarova
+      changes:
+        - sql:
+            sql: insert into roles (role) values ('ADMIN')
+        - sql:
+            sql: insert into roles (role) values ('TEACHER')
+        - sql:
+            sql: insert into roles (role) values ('STUDENT')

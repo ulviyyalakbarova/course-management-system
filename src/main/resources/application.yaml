@@ -1,0 +1,7 @@
+spring:
+  profiles:
+    active: test
+
+token:
+  signing:
+    key: 54aff6ab5337f72da230dfaa5473170736be4dda2e1a31a368ff1c3e375ff3c6
