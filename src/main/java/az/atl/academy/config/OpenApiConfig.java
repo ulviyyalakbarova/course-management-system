@@ -12,8 +12,9 @@ import java.util.List;
 
 @Configuration
 public class OpenApiConfig {
-    private String devUrl="localhost:8080";
-    private String prodUrl="prod.az";
+    private String devUrl = "localhost:8080";
+    private String prodUrl = "prod.az";
+
     @Bean
     public OpenAPI myOpenAPI() {
         Server devServer = new Server();
@@ -22,18 +23,17 @@ public class OpenApiConfig {
         Server prodServer = new Server();
         prodServer.setUrl(prodUrl);
         prodServer.setDescription("Server URL in Production environment");
-        Contact contact = new Contact();
-        contact.setEmail("test@gmail.com");
-        contact.setName("ATL");
-        contact.setUrl("https://www.google.com");
-        License mitLicense = new License().name("MIT License").url("https://choosealicense.com/licenses/mit/");
+        //Contact contact = new Contact();
+//        contact.setEmail("test@gmail.com");
+//        contact.setName("ATL");
+//        contact.setUrl("https://www.google.com");
+        //License mitLicense = new License().name(null).url(null);
         Info info = new Info()
-                .title("Tutorial Management API")
+                .title("Student Management System API")
                 .version("1.0")
-                .contact(contact)
-                .description("This API exposes endpoints to manage tutorials.").termsOfService("https://www.google" +
-                        ".com")
-                .license(mitLicense);
+                //.contact(contact)
+                .description("This API exposes endpoints for course-management-system.").termsOfService(null);
+                //.license(mitLicense);
         return new OpenAPI().info(info).servers(List.of(devServer, prodServer));
     }
 }
