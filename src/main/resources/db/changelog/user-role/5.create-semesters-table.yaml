@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 15092024-05
+      author: ulviyya.alakbarova
+      changes:
+        - createTable:
+            tableName: semesters
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: semester
+                  type: varchar(255)

@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 15092024-07
+      author: ulviyya.alakbarova
+      changes:
+        - createTable:
+            tableName: courses
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(255)
+              - column:
+                  name: description
+                  type: varchar(255)
+              - column:
+                  name: teacher_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: user_id
+                    references: users(id)
+                    deleteCascade: true
+              - column:
+                  name: semester_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: semester_id
+                    references: semesters(id)
+                    deleteCascade: true

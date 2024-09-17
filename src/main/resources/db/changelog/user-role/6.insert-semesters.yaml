@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 15092024-02
+      author: ulviyya.alakbarova
+      changes:
+        - sql:
+            sql: insert into semesters (semester) values ('FIRST_SEMESTER')
+        - sql:
+            sql: insert into semesters (semester) values ('SECOND_SEMESTER')

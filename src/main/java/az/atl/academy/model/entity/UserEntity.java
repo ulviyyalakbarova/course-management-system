@@ -1,6 +1,5 @@
 package az.atl.academy.model.entity;
 
-import az.atl.academy.model.enumeration.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

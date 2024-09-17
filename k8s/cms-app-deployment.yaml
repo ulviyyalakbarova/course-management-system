@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: course-management-system
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: course-management-system
+  template:
+    metadata:
+      labels:
+        app: course-management-system
+    spec:
+      containers:
+        - name: course-management-system
+          image: gcr.io/lustrous-cubist-435311-a4/course-management-system
+          ports:
+            - containerPort: 8080

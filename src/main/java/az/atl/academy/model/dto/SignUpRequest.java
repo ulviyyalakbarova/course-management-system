@@ -13,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SignUpRequest {
     @Schema(description = "Username", example = "John")
-    @Size(min = 5, max = 30, message = "Username must contain from 5 to 50 characters")
+    @Size(min = 5, max = 30, message = "Username must contain from 5 to 30 characters")
     @NotBlank(message = "Username cannot be empty")
     String username;
 

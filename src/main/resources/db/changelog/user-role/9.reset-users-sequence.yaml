@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 17092024-09
+      author: author
+      changes:
+        - sql:
+            sql: SELECT setval('users_id_seq', (SELECT MAX(id) FROM users));

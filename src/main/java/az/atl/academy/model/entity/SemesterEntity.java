@@ -1,33 +1,34 @@
 package az.atl.academy.model.entity;
 
-import az.atl.academy.model.enumeration.Role;
+import az.atl.academy.model.enumeration.Semester;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Builder
-@Table(name = "roles")
+@Table(name = "semesters")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class RoleEntity {
+public class SemesterEntity {
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_id_seq")
-    @SequenceGenerator(name = "roles_id_seq", sequenceName = "roles_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "semesters_id_seq")
+    @SequenceGenerator(name = "semesters_id_seq", sequenceName = "semesters_id_seq", allocationSize = 1)
     Long id;
+
+    @Column(name = "semester")
     @Enumerated(EnumType.STRING)
-    Role role;
+    Semester semester;
 
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RoleEntity that = (RoleEntity) o;
+        SemesterEntity that = (SemesterEntity) o;
         return Objects.equals(id, that.id);
     }
 
