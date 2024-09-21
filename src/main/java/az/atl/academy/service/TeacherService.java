@@ -48,10 +48,10 @@ public class TeacherService {
     }
 
     public Long createCourse(CourseDto courseDto){
-        UserEntity teacher = userRepository.findById(courseDto.getUserId().getId())
-                .orElseThrow(() -> new TeacherNotFoundException("Teacher not found"));
+        UserEntity teacher = userRepository.findById(courseDto.getUserId())
+                .orElseThrow(() -> new TeacherNotFoundException("Teacher not found with given ID: " + courseDto.getUserId()));
         SemesterEntity semester = semesterRepository.findById(courseDto.getSemester().getId())
-                .orElseThrow(() -> new SemesterNotFoundException("Semester not found"));
+                .orElseThrow(() -> new SemesterNotFoundException("Semester not found not found with given ID: " + courseDto.getSemester().getId()));
 
         var course = CourseEntity.builder()
                 .title(courseDto.getTitle())
@@ -66,8 +66,8 @@ public class TeacherService {
     }
 
     public Long createExam(ExamDto examDto){
-        CourseEntity course = courseRepository.findById(examDto.getCourse().getId())
-                .orElseThrow(() -> new CourseNotFoundException("Course not found"));
+        CourseEntity course = courseRepository.findById(examDto.getCourseId())
+                .orElseThrow(() -> new CourseNotFoundException("Course not found with given ID: " + examDto.getCourseId()));
 
         ExamEntity examEntity = ExamEntity.builder()
                 .startTime(examDto.getStartTime())

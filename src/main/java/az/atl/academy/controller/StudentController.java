@@ -13,7 +13,7 @@ public class StudentController {
     private final StudentService studentService;
 
     @PatchMapping("/applyCourse/{courseId}")
-    public ResponseEntity<Void> updateCourseStudents(@PathVariable Long courseId, @RequestBody CourseDto courseDto) {
+    public ResponseEntity<Void> applyCourse(@PathVariable Long courseId, @RequestBody CourseDto courseDto) {
         studentService.applyCourse(courseId, courseDto);
         return ResponseEntity.ok().build();
     }

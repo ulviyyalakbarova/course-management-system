@@ -17,5 +17,5 @@ public class ExamDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     LocalDateTime endTime;
 
-    CourseIdDto course;
+    Long courseId;
 }

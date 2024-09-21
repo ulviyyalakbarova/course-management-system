@@ -13,7 +13,7 @@ import java.util.List;
 public class CourseDto {
     String title;
     String description;
-    UserIdDto userId;
+    Long userId;
     SemesterDto semester;
-    List<UserIdDto> students;
+    List<Long> students;
 }
