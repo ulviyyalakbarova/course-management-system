@@ -21,6 +21,20 @@ services:
       PGADMIN_DEFAULT_PASSWORD: test
     volumes:
       - pgadmin-data:/var/lib/pgadmin
+  course-management-system:
+    image: ulviyyalakbarova/course-management-system:v1
+    container_name: cms_container
+    restart: always
+    ports:
+      - "8082:8080"
+    environment:
+      POSTGRE_URL: postgres
+      POSTGRE_PASSWORD: test
+      POSTGRE_USERNAME: postgres
+    volumes:
+      - course-management-system-data:/var/lib/cms
+
 volumes:
   pgdata:
   pgadmin-data:
+  course-management-system-data:
