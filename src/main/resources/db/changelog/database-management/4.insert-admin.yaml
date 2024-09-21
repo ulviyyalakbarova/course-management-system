@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 28072024-04
+      author: ulviyya.alakbarova
+      changes:
+        - sql:
+            sql: insert into users (id, username, password, email, role_id) values (1, 'admin', '$2b$12$mj/6b4sm1XqgzXHFwKbHA.yjKUHsDvkzhBD2e0FMlx9iyEuFvvvZK', 'admin@gmail.com', 1)

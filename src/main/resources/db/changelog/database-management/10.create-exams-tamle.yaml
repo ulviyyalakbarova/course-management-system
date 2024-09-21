@@ -1,0 +1,29 @@
+databaseChangeLog:
+- changeSet:
+    id: 19092024-10
+    author: ulviyya.alakbarova
+    changes:
+      - createTable:
+          tableName: exams
+          columns:
+            - column:
+                name: id
+                type: int
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: start_time
+                type: TIMESTAMP
+            - column:
+                name: end_time
+                type: TIMESTAMP
+            - column:
+                name: course_id
+                type: bigint
+                constraints:
+                  nullable: true
+                  foreignKeyName: course_id
+                  references: courses(id)
+                  deleteCascade: true

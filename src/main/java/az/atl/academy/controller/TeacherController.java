@@ -1,12 +1,10 @@
 package az.atl.academy.controller;
 
 import az.atl.academy.model.dto.CourseDto;
+import az.atl.academy.model.dto.ExamDto;
 import az.atl.academy.service.TeacherService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,5 +15,10 @@ public class TeacherController {
     @PostMapping("/createCourse")
     public Long createCourse(@RequestBody CourseDto courseDto){
         return teacherService.createCourse(courseDto);
+    }
+
+    @PostMapping("/createExam")
+    public Long createExam(@RequestBody ExamDto examDto){
+        return teacherService.createExam(examDto);
     }
 }

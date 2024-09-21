@@ -43,6 +43,7 @@ public class SecurityConfiguration {
                 }))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/user/**").permitAll()
                         .requestMatchers("/swagger-ui/**", "/swagger-resources/*", "v3/api-docs/**").permitAll()
                         .requestMatchers("/endpoint", "/teacher/**").hasAnyAuthority("TEACHER")
                         .requestMatchers("/endpoint2", "/student/**").hasAnyAuthority("STUDENT")
