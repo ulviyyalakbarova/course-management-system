@@ -41,7 +41,7 @@ public class SecurityConfiguration {
                     corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                     corsConfiguration.setExposedHeaders(List.of("*"));
                     corsConfiguration.setAllowCredentials(true);
-                    corsConfiguration.setAllowedOriginPatterns(List.of("http://34.171.185.105", "http://localhost:*"));
+                    corsConfiguration.setAllowedOriginPatterns(List.of("http://34.45.79.68", "http://localhost:*"));
                     return corsConfiguration;
                 }))
                 .authorizeHttpRequests(request -> request
