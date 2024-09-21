@@ -10,11 +10,11 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     open-in-view: false
 
   liquibase:
-    enabled: false
+    enabled: true
     database-change-log-lock-table: DATABASECHANGELOGLOCK
     database-change-log-table: DATABASECHANGELOG
     change-log: 'classpath:db/changelog/db.changelog-master.yaml'

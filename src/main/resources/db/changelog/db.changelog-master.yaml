@@ -1,3 +1,21 @@
 databaseChangeLog:
-  - includeAll:
-      path: classpath:db/changelog/database-management
+  - include:
+      file: classpath:db/changelog/database-management/1.create-roles-table.yaml
+  - include:
+      file: classpath:db/changelog/database-management/2.insert-roles.yaml
+  - include:
+      file: classpath:db/changelog/database-management/3.create-users-table.yaml
+  - include:
+      file: classpath:db/changelog/database-management/4.insert-admin.yaml
+  - include:
+      file: classpath:db/changelog/database-management/5.create-semesters-table.yaml
+  - include:
+      file: classpath:db/changelog/database-management/6.insert-semesters.yaml
+  - include:
+      file: classpath:db/changelog/database-management/7.create-courses-table.yaml
+  - include:
+      file: classpath:db/changelog/database-management/8.create-courses-students-table.yaml
+  - include:
+      file: classpath:db/changelog/database-management/9.reset-users-sequence.yaml
+  - include:
+      file: classpath:db/changelog/database-management/10.create-exams-table.yaml
