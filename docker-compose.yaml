@@ -22,7 +22,7 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
   course-management-system:
-    image: ulviyyalakbarova/course-management-system:v5
+    image: ulviyyalakbarova/course-management-system:v1
     container_name: cms_container
     restart: always
     ports:
