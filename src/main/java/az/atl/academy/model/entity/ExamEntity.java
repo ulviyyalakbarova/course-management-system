@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Data
@@ -29,6 +30,10 @@ public class ExamEntity {
 
     @OneToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     CourseEntity course;
+
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @JoinTable(name = "exams_students", joinColumns = @JoinColumn(name = "exam_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
+    List<UserEntity> students;
 
     @Override
     public boolean equals(Object o) {

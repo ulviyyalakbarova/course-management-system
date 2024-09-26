@@ -16,7 +16,6 @@ public record AuthenticationService(UserService userService,
                                     JwtService jwtService,
                                     PasswordEncoder passwordEncoder,
                                     AuthenticationManager authenticationManager,
-
                                     RoleRepository roleRepository
 ) {
 
