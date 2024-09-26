@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://${POSTGRE_URL:34.172.67.52}:5432/cms-application
+    url: jdbc:postgresql://${POSTGRE_URL:localhost}:5432/cms-application
     password: ${POSTGRE_PASSWORD:12345678}
     username: ${POSTGRE_USERNAME:postgres}
     driver-class-name: org.postgresql.Driver
