@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 27092024-11
+      author: ulviyya.alakbarova
+      changes:
+        - createTable:
+            tableName: exams_students
+            columns:
+              - column:
+                  name: exam_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: exam_id
+                    references: exams(id)
+                    deleteCascade: true
+              - column:
+                  name: student_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: student_id
+                    references: users(id)
+                    deleteCascade: true

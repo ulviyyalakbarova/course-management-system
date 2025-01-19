@@ -1,6 +1,7 @@
 package az.atl.academy.service;
 
 import az.atl.academy.exception.CourseNotFoundException;
+import az.atl.academy.exception.ExamNotFoundException;
 import az.atl.academy.exception.SemesterNotFoundException;
 import az.atl.academy.exception.TeacherNotFoundException;
 import az.atl.academy.model.dto.CourseDto;
@@ -65,6 +66,14 @@ public class TeacherService {
         return course.getId();
     }
 
+    public void deleteCourseById(Long id) {
+        if (courseRepository.existsById(id)) {
+            courseRepository.deleteById(id);
+        } else {
+            throw new CourseNotFoundException("Course not found with given ID: " + id);
+        }
+    }
+
     public Long createExam(ExamDto examDto){
         CourseEntity course = courseRepository.findById(examDto.getCourseId())
                 .orElseThrow(() -> new CourseNotFoundException("Course not found with given ID: " + examDto.getCourseId()));
@@ -76,5 +85,13 @@ public class TeacherService {
                 .build();
 
         return examRepository.save(examEntity).getId();
+    }
+
+    public void deleteExamById(Long id) {
+        if (examRepository.existsById(id)) {
+            examRepository.deleteById(id);
+        } else {
+            throw new ExamNotFoundException("Exam not found with given ID: " + id);
+        }
     }
 }
