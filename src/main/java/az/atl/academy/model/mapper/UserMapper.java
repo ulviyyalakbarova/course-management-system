@@ -1,6 +1,7 @@
 package az.atl.academy.model.mapper;
 
 import az.atl.academy.model.dto.UserDto;
+import az.atl.academy.model.dto.UserLightDto;
 import az.atl.academy.model.entity.UserEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -16,4 +17,7 @@ public interface UserMapper {
 
     @Mapping(source = "role", target = "role.role")
     UserEntity toEntity(UserDto userDto);
+
+    @Mapping(source = "role.role", target = "role")
+    UserLightDto toLightDto(UserEntity userEntity);
 }

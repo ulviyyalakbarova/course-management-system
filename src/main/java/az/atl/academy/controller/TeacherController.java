@@ -1,7 +1,6 @@
 package az.atl.academy.controller;
 
-import az.atl.academy.model.dto.CourseDto;
-import az.atl.academy.model.dto.ExamDto;
+import az.atl.academy.model.dto.*;
 import az.atl.academy.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,24 +13,33 @@ public class TeacherController {
     private final TeacherService teacherService;
 
     @PostMapping("/createCourse")
-    public Long createCourse(@RequestBody CourseDto courseDto){
+    public CourseLightDto createCourse(@RequestBody CourseDto courseDto){
         return teacherService.createCourse(courseDto);
     }
 
     @PostMapping("/createExam")
-    public Long createExam(@RequestBody ExamDto examDto){
+    public ExamLightDto createExam(@RequestBody ExamDto examDto){
         return teacherService.createExam(examDto);
     }
 
-    @DeleteMapping("deleteCourse/{id}")
-    public ResponseEntity<Void> deleteCourseById(@PathVariable Long id) {
-        teacherService.deleteCourseById(id);
-        return ResponseEntity.noContent().build();
+    @PostMapping("/addExamResult")
+    public ResponseEntity<Void> addExamResult(
+            @RequestParam Long examId,
+            @RequestParam Long studentId,
+            @RequestParam Long score){
+        teacherService.addExamResult(examId, studentId, score);
+        return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("deleteExam/{id}")
+    @DeleteMapping("/deleteCourse/{id}")
+    public ResponseEntity<Void> deleteCourseById(@PathVariable Long id) {
+        teacherService.deleteCourseById(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/deleteExam/{id}")
     public ResponseEntity<Void> deleteExamById(@PathVariable Long id) {
         teacherService.deleteExamById(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 }
