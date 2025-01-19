@@ -26,9 +26,4 @@ public class UserController {
     public List<UserDto> getAllStudents() {
         return studentService.getAllStudents();
     }
-
-    @GetMapping("/test")
-    public String test() {
-        return "hello world";
-    }
 }

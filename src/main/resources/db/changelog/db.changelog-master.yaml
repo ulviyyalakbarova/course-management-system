@@ -19,3 +19,5 @@ databaseChangeLog:
       file: classpath:db/changelog/database-management/9.reset-users-sequence.yaml
   - include:
       file: classpath:db/changelog/database-management/10.create-exams-table.yaml
+  - include:
+      file: classpath:db/changelog/database-management/11.create-exams-students-table.yaml
