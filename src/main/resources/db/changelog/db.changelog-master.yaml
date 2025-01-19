@@ -21,3 +21,5 @@ databaseChangeLog:
       file: classpath:db/changelog/database-management/10.create-exams-table.yaml
   - include:
       file: classpath:db/changelog/database-management/11.create-exams-students-table.yaml
+  - include:
+      file: classpath:db/changelog/database-management/12.create-exams-result-table.yaml

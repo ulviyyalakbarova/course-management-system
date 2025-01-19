@@ -1,20 +1,9 @@
 package az.atl.academy.service;
 
-import az.atl.academy.exception.CourseNotFoundException;
-import az.atl.academy.exception.ExamNotFoundException;
-import az.atl.academy.exception.SemesterNotFoundException;
-import az.atl.academy.exception.TeacherNotFoundException;
-import az.atl.academy.model.dto.CourseDto;
-import az.atl.academy.model.dto.ExamDto;
-import az.atl.academy.model.dto.UserDto;
-import az.atl.academy.model.entity.CourseEntity;
-import az.atl.academy.model.entity.ExamEntity;
-import az.atl.academy.model.entity.SemesterEntity;
-import az.atl.academy.model.entity.UserEntity;
-import az.atl.academy.repository.CourseRepository;
-import az.atl.academy.repository.ExamRepository;
-import az.atl.academy.repository.SemesterRepository;
-import az.atl.academy.repository.UserRepository;
+import az.atl.academy.exception.*;
+import az.atl.academy.model.dto.*;
+import az.atl.academy.model.entity.*;
+import az.atl.academy.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +17,7 @@ public class TeacherService {
     private final UserRepository userRepository;
     private final SemesterRepository semesterRepository;
     private final ExamRepository examRepository;
+    private final ExamResultRepository examResultRepository;
 
     public List<UserDto> getAllTeachers() {
         List<UserEntity> list = new ArrayList<>();
@@ -48,9 +38,9 @@ public class TeacherService {
         return userDtoList;
     }
 
-    public Long createCourse(CourseDto courseDto){
+    public CourseLightDto createCourse(CourseDto courseDto) {
         UserEntity teacher = userRepository.findById(courseDto.getUserId())
-                .orElseThrow(() -> new TeacherNotFoundException("Teacher not found with given ID: " + courseDto.getUserId()));
+                .orElseThrow(() -> new UserNotFoundException("Teacher not found with given ID: " + courseDto.getUserId()));
         SemesterEntity semester = semesterRepository.findById(courseDto.getSemester().getId())
                 .orElseThrow(() -> new SemesterNotFoundException("Semester not found not found with given ID: " + courseDto.getSemester().getId()));
 
@@ -63,7 +53,7 @@ public class TeacherService {
 
         courseRepository.save(course);
 
-        return course.getId();
+        return new CourseLightDto(course.getId());
     }
 
     public void deleteCourseById(Long id) {
@@ -74,17 +64,20 @@ public class TeacherService {
         }
     }
 
-    public Long createExam(ExamDto examDto){
+    public ExamLightDto createExam(ExamDto examDto) {
         CourseEntity course = courseRepository.findById(examDto.getCourseId())
                 .orElseThrow(() -> new CourseNotFoundException("Course not found with given ID: " + examDto.getCourseId()));
 
-        ExamEntity examEntity = ExamEntity.builder()
+        var examEntity = ExamEntity.builder()
                 .startTime(examDto.getStartTime())
                 .endTime(examDto.getEndTime())
                 .course(course)
                 .build();
 
-        return examRepository.save(examEntity).getId();
+        examRepository.save(examEntity);
+
+
+        return new ExamLightDto(examEntity.getId());
     }
 
     public void deleteExamById(Long id) {
@@ -93,5 +86,26 @@ public class TeacherService {
         } else {
             throw new ExamNotFoundException("Exam not found with given ID: " + id);
         }
+    }
+
+    public void addExamResult(Long examId, Long studentId, Long score) {
+        var exam = examRepository.findById(examId)
+                .orElseThrow(() -> new ExamNotFoundException("Exam not found"));
+
+        var student = userRepository.findById(studentId)
+                .orElseThrow(() -> new UserNotFoundException("Student not found"));
+
+
+        if (exam.getEndTime().isAfter(java.time.LocalDateTime.now())) {
+            throw new ExamNotFinishedException("Exam is not finished yet");
+        }
+
+        var examResultEntity = ExamResultEntity.builder()
+                .exam(exam)
+                .student(student)
+                .score(score)
+                .build();
+
+        examResultRepository.save(examResultEntity);
     }
 }

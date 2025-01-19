@@ -16,12 +16,12 @@ import java.util.List;
 public class ErrorHandler {
 
     @ExceptionHandler(value = AlreadyExistsException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.CONFLICT)
     public ResponseEntity<ErrorResponseModel> handleTaskNotFoundException(AlreadyExistsException exception){
         HttpHeaders headers = new HttpHeaders();
         headers.add("Custom-Header", "ATL");
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(headers)
-                .body(new ErrorResponseModel(HttpStatus.NOT_FOUND.value(), exception.getMessage()));
+        return ResponseEntity.status(HttpStatus.CONFLICT).headers(headers)
+                .body(new ErrorResponseModel(HttpStatus.CONFLICT.value(), exception.getMessage()));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -40,9 +40,27 @@ public class ErrorHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = TeacherNotFoundException.class)
+    @ExceptionHandler(value = UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<ErrorResponseModel> handleTeacherNotFoundException(TeacherNotFoundException exception){
+    public ResponseEntity<ErrorResponseModel> handleTeacherNotFoundException(UserNotFoundException exception){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Custom-Header", "ATL");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(headers)
+                .body(new ErrorResponseModel(HttpStatus.NOT_FOUND.value(), exception.getMessage()));
+    }
+
+    @ExceptionHandler(value = CourseNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<ErrorResponseModel> handleCourseNotFoundException(CourseNotFoundException exception){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Custom-Header", "ATL");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(headers)
+                .body(new ErrorResponseModel(HttpStatus.NOT_FOUND.value(), exception.getMessage()));
+    }
+
+    @ExceptionHandler(value = ExamNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<ErrorResponseModel> handleExamNotFoundException(ExamNotFoundException exception){
         HttpHeaders headers = new HttpHeaders();
         headers.add("Custom-Header", "ATL");
         return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(headers)
@@ -56,5 +74,14 @@ public class ErrorHandler {
         headers.add("Custom-Header", "ATL");
         return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(headers)
                 .body(new ErrorResponseModel(HttpStatus.NOT_FOUND.value(), exception.getMessage()));
+    }
+
+    @ExceptionHandler(value = ExamNotFinishedException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<ErrorResponseModel> handleExamNotFinishedException(ExamNotFinishedException exception){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Custom-Header", "ATL");
+        return ResponseEntity.status(HttpStatus.CONFLICT).headers(headers)
+                .body(new ErrorResponseModel(HttpStatus.CONFLICT.value(), exception.getMessage()));
     }
 }
