@@ -2,7 +2,6 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version "$springBootVersion"
 	id 'io.spring.dependency-management' version "$dependencyManagement"
-	id 'groovy'
 }
 
 group = 'com.example'
@@ -20,7 +19,6 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	compileOnly "org.projectlombok:lombok:${lombokVersion}"
 	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
@@ -47,9 +45,6 @@ dependencies {
 	runtimeOnly "io.jsonwebtoken:jjwt-jackson:${jwtVersion}"
 
 	implementation "org.springframework.cloud:spring-cloud-starter-openfeign:${feignClientVersion}"
-
-	testImplementation 'org.spockframework:spock-core:2.2-groovy-3.0'
-	testImplementation 'org.codehaus.groovy:groovy-all:3.0.9'
 
 	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${openApiVersion}"
 }
